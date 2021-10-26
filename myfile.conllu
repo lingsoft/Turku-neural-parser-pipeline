@@ -1,0 +1,16 @@
+# newdoc
+# newpar
+# sent_id = 1
+# text = Tämä on testilause.
+1	Tämä	tämä	PRON	_	Case=Nom|Number=Sing|PronType=Dem	3	nsubj:cop	_	_
+2	on	olla	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	3	cop	_	_
+3	testilause	testi#lause	NOUN	_	Case=Nom|Number=Sing	0	root	_	SpaceAfter=No
+4	.	.	PUNCT	_	_	3	punct	_	_
+
+# sent_id = 2
+# text = Koirat ovat kivaa.
+1	Koirat	koira	NOUN	_	Case=Nom|Number=Plur	3	nsubj:cop	_	_
+2	ovat	olla	AUX	_	Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	3	cop	_	_
+3	kivaa	kiva	ADJ	_	Case=Par|Degree=Pos|Number=Sing	0	root	_	SpaceAfter=No
+4	.	.	PUNCT	_	_	3	punct	_	SpacesAfter=\n
+
