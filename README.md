@@ -7,7 +7,7 @@ Documentation: https://turkunlp.github.io/Turku-neural-parser-pipeline/
 # ELG service
 ## Run it locally
 ```shell
-gunicorn tnpp_serve_elg:app -b 0.0.0.0:3000 -t 90
+gunicorn tnpp_serve_elg:app -b 0.0.0.0:8080 -t 90
 ```
 ## Run it with docker
 ```shell
@@ -16,7 +16,7 @@ docker run --rm -p 8080:8000 tnpp-elg
 ```
 ## Send a POST request to the server:
 ```shell
-curl -d '{"type":"text", "content": "Minä rakastan sinua!"}' -H "Content-Type: application/json" -X POST http://localhost:8181/process
+curl -d '{"type":"text", "content": "Minä rakastan sinua!"}' -H "Content-Type: application/json" -X POST http://localhost:8080/process
 ```
 Response should be:
 There is orignal CONLLU format included under tnpp/conllu keys of annotations object.
