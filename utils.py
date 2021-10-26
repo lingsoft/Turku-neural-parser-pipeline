@@ -22,16 +22,18 @@ def _conllu_parse_word(cols):
 def conllu2json(fname='myfile.conllu'):
 
     with open(fname, 'r') as f:
-        conllu = f.readlines()
+        origin_conllu = f.read()
+        conllu = origin_conllu.split("\n")
         sent_cnt = 0
         doc_cnt = 0
-        annots = {"docs": [], "paragraphs": [], "sentences": [], "tokens": []}
+        annots = {"conllu":origin_conllu, "docs": [], "paragraphs": [], "sentences": [], "tokens": []}
 
         first_doc, first_par, first_sent, last_token, in_mwt = None, None, None, None, 0
         offset = 0
         curr_text = ""
-        for line in conllu:
+        for i,line in enumerate(conllu):
             line = line.rstrip("\r")
+            print(i, line)
 
             # Handle continuing multi-word projects
             if in_mwt:
@@ -68,7 +70,7 @@ def conllu2json(fname='myfile.conllu'):
                     curr_text = line.split('=')[-1].strip()
                     continue
 
-            if line is '\n':
+            if not line:
                 # Check end of sentence
                 if first_sent is not None and last_token is not None:
                     annots["sentences"].append(
