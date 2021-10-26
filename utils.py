@@ -33,7 +33,6 @@ def conllu2json(fname='myfile.conllu'):
         curr_text = ""
         for i,line in enumerate(conllu):
             line = line.rstrip("\r")
-            print(i, line)
 
             # Handle continuing multi-word projects
             if in_mwt:
