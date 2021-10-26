@@ -1,0 +1,47 @@
+FROM python:3.8
+
+
+# Install tini and create an unprivileged user
+ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /sbin/tini
+RUN addgroup --gid 1001 "elg" && adduser --disabled-password --gecos "ELG User,,," --home /elg --ingroup elg --uid 1001 elg && chmod +x /sbin/tini
+RUN apt-get update && apt-get install git -y
+
+# Copy in just the requirements file
+COPY --chown=elg:elg requirements.txt fetch_models.py elg/
+
+# Everything from here down runs as the unprivileged user account
+USER elg:elg
+
+WORKDIR /elg
+
+
+# Create a Python virtual environment for the dependencies
+
+RUN python -m venv venv 
+RUN /elg/venv/bin/python -m pip install --upgrade pip && pip install torch==1.9.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN venv/bin/pip install --upgrade --no-cache-dir -r requirements.txt
+
+# Download the models: skip now for dev purpose
+ARG MODEL=fi_tdt_dia
+ARG PIPELINE=parse_plaintext
+ARG MAX_CHARS=15000
+
+ENV TNPP_MODEL models_${MODEL}/pipelines.yaml
+ENV TNPP_PIPELINE ${PIPELINE}
+ENV TNPP_MAX_CHARS ${MAX_CHARS}
+
+# RUN python fetch_models.py $MODEL
+
+# Copy ini the entrypoint script and everything else our app needs
+COPY --chown=elg:elg models_fi_tdt_dia /elg/models_fi_tdt_dia/
+COPY --chown=elg:elg tnparser /elg/tnparser/
+COPY --chown=elg:elg docker-entrypoint.sh tnpp_serve_elg.py /elg/
+
+ENV WORKERS=1
+ENV TIMEOUT=30
+ENV WORKER_CLASS=sync
+ENV LOGURU_LEVEL=INFO
+
+
+RUN chmod +x ./docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]
