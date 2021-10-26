@@ -8,9 +8,13 @@
 4	.	.	PUNCT	_	_	3	punct	_	_
 
 # sent_id = 2
-# text = Koirat ovat kivaa.
+# text = Koirat ovat kivaa, ettei niin?
 1	Koirat	koira	NOUN	_	Case=Nom|Number=Plur	3	nsubj:cop	_	_
 2	ovat	olla	AUX	_	Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	3	cop	_	_
 3	kivaa	kiva	ADJ	_	Case=Par|Degree=Pos|Number=Sing	0	root	_	SpaceAfter=No
-4	.	.	PUNCT	_	_	3	punct	_	SpacesAfter=\n
-
+4	,	,	PUNCT	_	_	6	punct	_	_
+5-6	ettei	_	_	_	_	_	_	_	_
+5	että	että	SCONJ	_	_	6	mark	_	_
+6	ei	ei	AUX	_	Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act	3	advcl	_	_
+7	niin	niin	ADV	_	_	6	advmod	_	SpaceAfter=No
+8	?	?	PUNCT	_	_	3	punct	_	SpacesAfter=\n

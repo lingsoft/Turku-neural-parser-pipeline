@@ -1,4 +1,6 @@
 import json
+import re
+
 
 def _conllu_parse_word(cols):
     result = {"form": cols[1]}
@@ -25,11 +27,22 @@ def conllu2json(fname='myfile.conllu'):
         doc_cnt = 0
         annots = {"docs": [], "paragraphs": [], "sentences": [], "tokens": []}
 
-        first_doc, first_par, first_sent, last_token = None, None, None, None
+        first_doc, first_par, first_sent, last_token, in_mwt = None, None, None, None, 0
         offset = 0
         curr_text = ""
         for line in conllu:
             line = line.rstrip("\r")
+
+            # Handle continuing multi-word projects
+            if in_mwt:
+                cols = line.split("\t")
+                if len(cols) != 10 or not cols[0].isdigit():
+                    raise Exception(
+                        "Internal error: Cannot parse CoNLL-U response")
+                annots["tokens"][-1]["features"]["words"].append(
+                    _conllu_parse_word(cols))
+                in_mwt -= 1
+                continue
 
             if line.startswith("#"):
                 # Check end of document
@@ -75,28 +88,38 @@ def conllu2json(fname='myfile.conllu'):
                 continue
 
             tokens = None
-
-            if cols[0].isdigit():
+            # check for mwt
+            match = re.match(r"(\d+)-(\d+)$", cols[0])
+            if match:
+                # Muli-word token
+                first, last = int(match.group(1)), int(match.group(2))
+                tokens = last - first + 1
+            elif cols[0].isdigit():
                 tokens = 1
             else:
                 raise Exception(
                     "Internal error: Cannot parse CoNLL-U response")
 
+            # Parse token start,end from current word since we don't have TokenRange in CONLLU
+            curr_word = cols[1]
+            token_start = curr_text.find(curr_word) + offset
+            token_end = token_start + len(curr_word)
+            curr_text = curr_text[token_end-offset:]
+            offset = token_end
+
+            if first_par is None:
+                first_par = token_start
+            if first_sent is None:
+                first_sent = token_start
+            last_token = token_end
+
+            annots["tokens"].append({"start": token_start, "end": token_end, "features": {
+                                    "words": []}})
             if tokens == 1:
-                curr_word = cols[1]
-                token_start = curr_text.find(curr_word) + offset
-                token_end = token_start + len(curr_word)
-                curr_text = curr_text[token_end-offset:]
-                offset = token_end
-
-                annots["tokens"].append({"start": token_start, "end": token_end, "features": {
-                                        "words": [_conllu_parse_word(cols)]}})
-
-                if first_par is None:
-                    first_par = token_start
-                if first_sent is None:
-                    first_sent = token_start
-                last_token = token_end
+                annots["tokens"][-1]["features"]["words"].append(
+                    _conllu_parse_word(cols))
+            else:
+                in_mwt = tokens
 
         if first_par is not None and last_token is not None:
             annots["paragraphs"].append(
