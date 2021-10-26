@@ -10,6 +10,10 @@ Documentation: https://turkunlp.github.io/Turku-neural-parser-pipeline/
 gunicorn tnpp_serve_elg:app -b 0.0.0.0:8080 -t 90
 ```
 ## Run it with docker
+Suppose model and pipeline is downloaded and is placed under `models_fi_tdt_dia`folder.
+```shell
+python fetch_models.py fi_tdt_dia
+```
 ```shell
 docker build . -f Dockerfile.serve.elg -t tnpp-elg
 docker run --rm -p 8080:8000 tnpp-elg
