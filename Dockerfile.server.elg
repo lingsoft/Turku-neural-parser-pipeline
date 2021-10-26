@@ -7,7 +7,7 @@ RUN addgroup --gid 1001 "elg" && adduser --disabled-password --gecos "ELG User,,
 RUN apt-get update && apt-get install git -y
 
 # Copy in just the requirements file
-COPY --chown=elg:elg requirements.txt fetch_models.py elg/
+COPY --chown=elg:elg requirements.txt.elg fetch_models.py elg/
 
 # Everything from here down runs as the unprivileged user account
 USER elg:elg
@@ -19,7 +19,7 @@ WORKDIR /elg
 
 RUN python -m venv venv 
 RUN /elg/venv/bin/python -m pip install --upgrade pip && pip install torch==1.9.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
-RUN venv/bin/pip install --upgrade --no-cache-dir -r requirements.txt
+RUN venv/bin/pip install --upgrade --no-cache-dir -r requirements.txt.elg
 
 # Download the models: skip now for dev purpose
 ARG MODEL=fi_tdt_dia
