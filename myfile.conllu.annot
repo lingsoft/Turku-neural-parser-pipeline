@@ -1,0 +1,443 @@
+{
+  "conllu": "# newdoc\n# newpar\n# sent_id = 1\n# text = Minulla on söpö koira.\n1\tMinulla\tminä\tPRON\t_\tCase=Ade|Number=Sing|Person=1|PronType=Prs\t0\troot\t_\t_\n2\ton\tolla\tAUX\t_\tMood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act\t1\tcop:own\t_\t_\n3\tsöpö\tsöpö\tADJ\t_\tCase=Nom|Degree=Pos|Number=Sing\t4\tamod\t_\t_\n4\tkoira\tkoira\tNOUN\t_\tCase=Nom|Number=Sing\t1\tnsubj:cop\t_\tSpaceAfter=No\n5\t.\t.\tPUNCT\t_\t_\t1\tpunct\t_\t_\n\n# sent_id = 2\n# text = Se haukkuu ja syö makkaraa, ja todellakin roi3:sta sekä poppedilliä ja tsillailee!\n1\tSe\tse\tPRON\t_\tCase=Nom|Number=Sing|PronType=Dem\t2\tnsubj\t_\t_\n2\thaukkuu\thaukkua\tVERB\t_\tMood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act\t0\troot\t_\t_\n3\tja\tja\tCCONJ\t_\t_\t4\tcc\t_\t_\n4\tsyö\tsyödä\tVERB\t_\tMood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act\t2\tconj\t_\t_\n5\tmakkaraa\tmakkara\tNOUN\t_\tCase=Par|Number=Sing\t2\tobj\t_\tSpaceAfter=No\n6\t,\t,\tPUNCT\t_\t_\t9\tpunct\t_\t_\n7\tja\tja\tCCONJ\t_\t_\t9\tcc\t_\t_\n8\ttodellakin\ttodella\tADV\t_\tClitic=Kin\t9\tadvmod\t_\t_\n9\troi3:sta\troiksi\tNOUN\t_\tCase=Par|Number=Sing|Style=Coll\t2\tconj\t_\t_\n10\tsekä\tsekä\tCCONJ\t_\t_\t11\tcc\t_\t_\n11\tpoppedilliä\tpoppedilli\tNOUN\t_\tCase=Par|Number=Sing\t9\tconj\t_\t_\n12\tja\tja\tCCONJ\t_\t_\t13\tcc\t_\t_\n13\ttsillailee\ttsillailla\tVERB\t_\tMood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act\t9\tconj\t_\tSpaceAfter=No\n14\t!\t!\tPUNCT\t_\t_\t2\tpunct\t_\t_\n\n# sent_id = 3\n# text = Ettei se vaan lähtisi karkaamaan.?\n1-2\tEttei\t_\t_\t_\t_\t_\t_\t_\t_\n1\tEttä\tettä\tSCONJ\t_\t_\t5\tmark\t_\t_\n2\tei\tei\tAUX\t_\tNumber=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act\t5\taux\t_\t_\n3\tse\tse\tPRON\t_\tCase=Nom|Number=Sing|PronType=Dem\t5\tnsubj\t_\t_\n4\tvaan\tvaan\tADV\t_\t_\t5\tadvmod\t_\t_\n5\tlähtisi\tlähteä\tVERB\t_\tConnegative=Yes|Mood=Cnd|VerbForm=Fin\t0\troot\t_\t_\n6\tkarkaamaan\tkarata\tVERB\t_\tCase=Ill|InfForm=3|Number=Sing|VerbForm=Inf|Voice=Act\t5\txcomp\t_\tSpaceAfter=No\n7\t.\t.\tPUNCT\t_\t_\t5\tpunct\t_\tSpaceAfter=No\n8\t?\t?\tPUNCT\t_\t_\t5\tpunct\t_\tSpacesAfter=\\n\n\n",
+  "docs": [],
+  "paragraphs": [
+    {
+      "start": 0,
+      "end": 140,
+      "features": {}
+    }
+  ],
+  "sentences": [
+    {
+      "start": 0,
+      "end": 22,
+      "features": {}
+    },
+    {
+      "start": 23,
+      "end": 105,
+      "features": {}
+    },
+    {
+      "start": 106,
+      "end": 140,
+      "features": {}
+    }
+  ],
+  "tokens": [
+    {
+      "start": 0,
+      "end": 7,
+      "features": {
+        "words": [
+          {
+            "form": "Minulla",
+            "lemma": "minä",
+            "upos": "PRON",
+            "feats": "Case=Ade|Number=Sing|Person=1|PronType=Prs",
+            "head": 0,
+            "deprel": "root"
+          }
+        ]
+      }
+    },
+    {
+      "start": 8,
+      "end": 10,
+      "features": {
+        "words": [
+          {
+            "form": "on",
+            "lemma": "olla",
+            "upos": "AUX",
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act",
+            "head": 1,
+            "deprel": "cop:own"
+          }
+        ]
+      }
+    },
+    {
+      "start": 11,
+      "end": 15,
+      "features": {
+        "words": [
+          {
+            "form": "söpö",
+            "lemma": "söpö",
+            "upos": "ADJ",
+            "feats": "Case=Nom|Degree=Pos|Number=Sing",
+            "head": 4,
+            "deprel": "amod"
+          }
+        ]
+      }
+    },
+    {
+      "start": 16,
+      "end": 21,
+      "features": {
+        "words": [
+          {
+            "form": "koira",
+            "lemma": "koira",
+            "upos": "NOUN",
+            "feats": "Case=Nom|Number=Sing",
+            "head": 1,
+            "deprel": "nsubj:cop"
+          }
+        ]
+      }
+    },
+    {
+      "start": 21,
+      "end": 22,
+      "features": {
+        "words": [
+          {
+            "form": ".",
+            "lemma": ".",
+            "upos": "PUNCT",
+            "head": 1,
+            "deprel": "punct"
+          }
+        ]
+      }
+    },
+    {
+      "start": 23,
+      "end": 25,
+      "features": {
+        "words": [
+          {
+            "form": "Se",
+            "lemma": "se",
+            "upos": "PRON",
+            "feats": "Case=Nom|Number=Sing|PronType=Dem",
+            "head": 2,
+            "deprel": "nsubj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 26,
+      "end": 33,
+      "features": {
+        "words": [
+          {
+            "form": "haukkuu",
+            "lemma": "haukkua",
+            "upos": "VERB",
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act",
+            "head": 0,
+            "deprel": "root"
+          }
+        ]
+      }
+    },
+    {
+      "start": 34,
+      "end": 36,
+      "features": {
+        "words": [
+          {
+            "form": "ja",
+            "lemma": "ja",
+            "upos": "CCONJ",
+            "head": 4,
+            "deprel": "cc"
+          }
+        ]
+      }
+    },
+    {
+      "start": 37,
+      "end": 40,
+      "features": {
+        "words": [
+          {
+            "form": "syö",
+            "lemma": "syödä",
+            "upos": "VERB",
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act",
+            "head": 2,
+            "deprel": "conj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "features": {
+        "words": [
+          {
+            "form": "makkaraa",
+            "lemma": "makkara",
+            "upos": "NOUN",
+            "feats": "Case=Par|Number=Sing",
+            "head": 2,
+            "deprel": "obj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 49,
+      "end": 50,
+      "features": {
+        "words": [
+          {
+            "form": ",",
+            "lemma": ",",
+            "upos": "PUNCT",
+            "head": 9,
+            "deprel": "punct"
+          }
+        ]
+      }
+    },
+    {
+      "start": 51,
+      "end": 53,
+      "features": {
+        "words": [
+          {
+            "form": "ja",
+            "lemma": "ja",
+            "upos": "CCONJ",
+            "head": 9,
+            "deprel": "cc"
+          }
+        ]
+      }
+    },
+    {
+      "start": 54,
+      "end": 64,
+      "features": {
+        "words": [
+          {
+            "form": "todellakin",
+            "lemma": "todella",
+            "upos": "ADV",
+            "feats": "Clitic=Kin",
+            "head": 9,
+            "deprel": "advmod"
+          }
+        ]
+      }
+    },
+    {
+      "start": 65,
+      "end": 73,
+      "features": {
+        "words": [
+          {
+            "form": "roi3:sta",
+            "lemma": "roiksi",
+            "upos": "NOUN",
+            "feats": "Case=Par|Number=Sing|Style=Coll",
+            "head": 2,
+            "deprel": "conj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 74,
+      "end": 78,
+      "features": {
+        "words": [
+          {
+            "form": "sekä",
+            "lemma": "sekä",
+            "upos": "CCONJ",
+            "head": 11,
+            "deprel": "cc"
+          }
+        ]
+      }
+    },
+    {
+      "start": 79,
+      "end": 90,
+      "features": {
+        "words": [
+          {
+            "form": "poppedilliä",
+            "lemma": "poppedilli",
+            "upos": "NOUN",
+            "feats": "Case=Par|Number=Sing",
+            "head": 9,
+            "deprel": "conj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 91,
+      "end": 93,
+      "features": {
+        "words": [
+          {
+            "form": "ja",
+            "lemma": "ja",
+            "upos": "CCONJ",
+            "head": 13,
+            "deprel": "cc"
+          }
+        ]
+      }
+    },
+    {
+      "start": 94,
+      "end": 104,
+      "features": {
+        "words": [
+          {
+            "form": "tsillailee",
+            "lemma": "tsillailla",
+            "upos": "VERB",
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act",
+            "head": 9,
+            "deprel": "conj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 104,
+      "end": 105,
+      "features": {
+        "words": [
+          {
+            "form": "!",
+            "lemma": "!",
+            "upos": "PUNCT",
+            "head": 2,
+            "deprel": "punct"
+          }
+        ]
+      }
+    },
+    {
+      "start": 106,
+      "end": 111,
+      "features": {
+        "words": [
+          {
+            "form": "Että",
+            "lemma": "että",
+            "upos": "SCONJ",
+            "head": 5,
+            "deprel": "mark"
+          },
+          {
+            "form": "ei",
+            "lemma": "ei",
+            "upos": "AUX",
+            "feats": "Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act",
+            "head": 5,
+            "deprel": "aux"
+          }
+        ]
+      }
+    },
+    {
+      "start": 112,
+      "end": 114,
+      "features": {
+        "words": [
+          {
+            "form": "se",
+            "lemma": "se",
+            "upos": "PRON",
+            "feats": "Case=Nom|Number=Sing|PronType=Dem",
+            "head": 5,
+            "deprel": "nsubj"
+          }
+        ]
+      }
+    },
+    {
+      "start": 115,
+      "end": 119,
+      "features": {
+        "words": [
+          {
+            "form": "vaan",
+            "lemma": "vaan",
+            "upos": "ADV",
+            "head": 5,
+            "deprel": "advmod"
+          }
+        ]
+      }
+    },
+    {
+      "start": 120,
+      "end": 127,
+      "features": {
+        "words": [
+          {
+            "form": "lähtisi",
+            "lemma": "lähteä",
+            "upos": "VERB",
+            "feats": "Connegative=Yes|Mood=Cnd|VerbForm=Fin",
+            "head": 0,
+            "deprel": "root"
+          }
+        ]
+      }
+    },
+    {
+      "start": 128,
+      "end": 138,
+      "features": {
+        "words": [
+          {
+            "form": "karkaamaan",
+            "lemma": "karata",
+            "upos": "VERB",
+            "feats": "Case=Ill|InfForm=3|Number=Sing|VerbForm=Inf|Voice=Act",
+            "head": 5,
+            "deprel": "xcomp"
+          }
+        ]
+      }
+    },
+    {
+      "start": 138,
+      "end": 139,
+      "features": {
+        "words": [
+          {
+            "form": ".",
+            "lemma": ".",
+            "upos": "PUNCT",
+            "head": 5,
+            "deprel": "punct"
+          }
+        ]
+      }
+    },
+    {
+      "start": 139,
+      "end": 140,
+      "features": {
+        "words": [
+          {
+            "form": "?",
+            "lemma": "?",
+            "upos": "PUNCT",
+            "head": 5,
+            "deprel": "punct"
+          }
+        ]
+      }
+    }
+  ]
+}
