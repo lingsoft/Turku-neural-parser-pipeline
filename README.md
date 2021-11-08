@@ -15,7 +15,7 @@ Suppose model and pipeline is downloaded and is placed under `models_fi_tdt_dia`
 python fetch_models.py fi_tdt_dia
 ```
 ```shell
-docker build . -f Dockerfile.serve.elg -t tnpp-elg
+docker build . -f Dockerfile.server.elg -t tnpp-elg
 docker run --rm -p 8080:8000 tnpp-elg
 ```
 ## Send a POST request to the server:
