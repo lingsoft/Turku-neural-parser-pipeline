@@ -1,3 +1,4 @@
+import asyncio
 from multiprocessing import Process,Queue
 import multiprocessing as multiprocessing
 import importlib
@@ -18,6 +19,7 @@ def read_pipelines(fname):
         pipelines[pipeline_name]=new_component_list
     return pipelines
 
+
 class Pipeline:
 
     def __init__(self, steps, extra_args=None):
@@ -30,6 +32,7 @@ class Pipeline:
         self.q_out=self.q_in #where to receive data from the whole pipeline
         self.modules = []
         self.processes=[]
+        self.large_jobs = []
 
         for mod_name_and_params in steps:
             self.add_step(mod_name_and_params, extra_args)
@@ -131,10 +134,70 @@ class Pipeline:
                 break
         return res
 
+    def chunk_plain_text(self, txt, max_char=15000):
+        '''
+        Divide large plain text into chunks
+        '''
+        ck_num = int(len(txt) / max_char)
+        chunks = []
+        offsets = [[0, 0]]
+        for i in range(ck_num):
+            tmp_str = txt[offsets[i][0]:(i + 1) * max_char][::-1]
+            eos_index = tmp_str.index('.') if '.' in tmp_str else tmp_str.index(' ')
+            offsets[i][1] = len(tmp_str) - eos_index + offsets[i][0]
+            offsets.append([offsets[i][1], offsets[i][1]])
+        if offsets[ck_num][0] != len(txt):
+            offsets[ck_num - 1][1] = len(txt)
+        for offset in offsets[:-1]:
+            chunks.append(txt[offset[0]:offset[1]].strip())
+        return chunks
+
+    def parse_large_txt(self, large_txt):
+        """
+        The function divide the txt into small chunks and add chunks to the job queue
+        large_txt: string object but a large one
+        return: Job id
+        """
+        chunks = self.chunk_plain_text(large_txt)
+        job_ids = []
+        for chunk in chunks:
+            # TODO if too many jobs in the queue, this part will be blocked
+            job_ids.append(self.put(chunk))
+        large_job_id = '%'.join(job_ids)
+        self.large_jobs.append(large_job_id)
+        return large_job_id
+
+    def report_large_job(self, job_id):
+        """
+        Given a job_id, this function can return its progress,
+        if done, return the result
+        """
+        try:
+            while True:
+                finished_id,finished=self.q_out.get_nowait()
+                self.done_jobs[finished_id] = finished
+        except:
+            pass
+        job_ids = self.large_jobs[self.large_jobs.index(job_id)].split('%')
+        job_ids = [i for i in job_ids]
+        ct = 0
+        for idx in job_ids:
+            if idx in self.done_jobs: ct += 1
+        if ct == len(job_ids):
+            res = []
+            for idx in job_ids:
+                res.append(self.done_jobs.pop(idx))
+                self.job_counter-=1
+            self.large_jobs.remove(job_id)
+            # TODO Meta data in return, i.e, wrong sent_id
+            return '\n'.join(res)
+        else:
+            return "Progress: %d percent"%(100*ct/len(job_ids))
+
     def parse_batched(self,inp,):
         """inp: is a file-like object with input data
            yield_res: 
            """
         pass
            
-        
+
