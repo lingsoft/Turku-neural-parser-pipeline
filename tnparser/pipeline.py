@@ -139,15 +139,21 @@ class Pipeline:
         Divide large plain text into chunks
         '''
         ck_num = int(len(txt) / max_char)
+        # list of chunks
         chunks = []
+        # offsets of chunks
         offsets = [[0, 0]]
         for i in range(ck_num):
+            # reverse the chunk and find the index of end of sentence/word
             tmp_str = txt[offsets[i][0]:(i + 1) * max_char][::-1]
             eos_index = tmp_str.index('.') if '.' in tmp_str else tmp_str.index(' ')
             offsets[i][1] = len(tmp_str) - eos_index + offsets[i][0]
+            # the eos_index is the start index of the next
             offsets.append([offsets[i][1], offsets[i][1]])
+        # add the remaining words to the last chunk
         if offsets[ck_num][0] != len(txt):
             offsets[ck_num - 1][1] = len(txt)
+        # split the txt using the offsets list
         for offset in offsets[:-1]:
             chunks.append(txt[offset[0]:offset[1]].strip())
         return chunks
@@ -170,19 +176,26 @@ class Pipeline:
     def report_large_job(self, job_id):
         """
         Given a job_id, this function can return its progress,
-        if done, return the result
+        if done, return the result,
+        if doesn't find the job_id, return False
         """
         try:
             while True:
+                # get all the nowait jobs and set as finished
                 finished_id,finished=self.q_out.get_nowait()
                 self.done_jobs[finished_id] = finished
         except:
             pass
+        # Either wrong job_id or already retrieved the result
+        if job_id not in self.large_jobs:
+            return (False)
+        # get job_ids from the large_job_id
         job_ids = self.large_jobs[self.large_jobs.index(job_id)].split('%')
-        job_ids = [i for i in job_ids]
         ct = 0
+        # get progress report
         for idx in job_ids:
             if idx in self.done_jobs: ct += 1
+        # all jobs are done
         if ct == len(job_ids):
             res = []
             for idx in job_ids:
@@ -190,9 +203,9 @@ class Pipeline:
                 self.job_counter-=1
             self.large_jobs.remove(job_id)
             # TODO Meta data in return, i.e, wrong sent_id
-            return '\n'.join(res)
+            return (True, '\n'.join(res))
         else:
-            return "Progress: %d percent"%(100*ct/len(job_ids))
+            return (False, "Progress: %d percent"%(100*ct/len(job_ids)))
 
     def parse_batched(self,inp,):
         """inp: is a file-like object with input data

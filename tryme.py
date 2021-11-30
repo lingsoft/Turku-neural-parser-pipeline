@@ -5,8 +5,8 @@ text2="Some other text, to see we can tokenize more stuff without reloading the 
 
 
 # What do we have for English in models_en_ewt?
-available_pipelines=read_pipelines("models_en_ewt/pipelines.yaml")               # {pipeline_name -> its steps}
-p=Pipeline(available_pipelines["tokenize"])                                      # launch the pipeline from the steps
+available_pipelines=read_pipelines("models_fi_tdt_dia/pipelines.yaml")               # {pipeline_name -> its steps}
+p=Pipeline(available_pipelines["parse_plaintext"])                                      # launch the pipeline from the steps
 
 for _ in range(1000):
     print(p.parse(text1))

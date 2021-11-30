@@ -39,7 +39,7 @@ class TurkuNeuralParser(FlaskService):
             result["deprel"] = cols[7]
         return result    
 
-    def conllu_to_annotation(self, conllu, content):
+    def conllu_to_annotation(self, conllu):
         """Convert CONLLU format to annoation objects (Dict object)"""
         """Modifed from https://gitlab.com/european-language-grid/cuni/srv-udpipe/-/blob/master/elg_adapter/udpipe_elg_rest_server.py#L127"""
         """CONLLU:
@@ -172,9 +172,25 @@ class TurkuNeuralParser(FlaskService):
             print(annots)
             raise e
 
-    def process_text(self, content):
-        output =  self.tnpp.parse(content.content)
-        return self.conllu_to_annotation(output, content.content)
-        
+    def process_text(self, request):
+        params = request.params
+        if params:
+            if 'job_id' in params:
+                job_id = params['job_id']
+                report = self.tnpp.report_large_job(job_id)
+                assert len(report)!=1, 'Job not exists or already retreived the result.'
+                is_done,res = report
+                if is_done:
+                    return self.conllu_to_annotation(res)
+                else:
+                    return AnnotationsResponse(features={'progress_report': res})
+        if len(request.content) > max_char:
+            job_id = self.tnpp.parse_large_txt(request.content)
+            return AnnotationsResponse(features={'job_id': job_id})
+        else:
+            output = self.tnpp.parse(request.content)
+            return self.conllu_to_annotation(output)
+
+
 tnpp_service = TurkuNeuralParser("turku-neural-parser")
 app = tnpp_service.app
