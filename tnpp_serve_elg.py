@@ -172,6 +172,16 @@ class TurkuNeuralParser(FlaskService):
             print(annots)
             raise e
 
+    def conllu_list_to_annotation(self, conllus):
+        res = [self.conllu_to_annotation(conllu).annotations for conllu in conllus]
+        offsets = {"tnpp/docs": [], "tnpp/paragraphs": [], "tnpp/sentences": [], "tnpp/tokens": [], "tnpp/conllu": []}
+        annots = {"tnpp/docs": [], "tnpp/paragraphs": [], "tnpp/sentences": [], "tnpp/tokens": [], "tnpp/conllu": []}
+        for item in res:
+            for k in annots.keys():
+                annots[k].extend(item[k])
+                offsets[k].append(len(item[k]))
+        return AnnotationsResponse(annotations=annots, features=offsets)
+
     def process_text(self, request):
         params = request.params
         if params:
@@ -184,8 +194,7 @@ class TurkuNeuralParser(FlaskService):
                 is_done,res = report
                 # is_done then return the result
                 if is_done:
-                    # TODO Critical got a bug when I call this func
-                    return self.conllu_to_annotation(res)
+                    return self.conllu_list_to_annotation(res)
                 # else return the progress
                 else:
                     return AnnotationsResponse(features={'progress_report': res})

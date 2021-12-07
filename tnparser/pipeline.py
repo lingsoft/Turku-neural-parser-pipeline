@@ -207,7 +207,7 @@ class Pipeline:
         self.empty_q_out()
         # Either wrong job_id or already retrieved the result
         if job_id not in self.large_jobs:
-            return (False)
+            return [False]
         # get job_ids from the large_job_id
         job_ids = self.large_jobs[self.large_jobs.index(job_id)].split('%')
         ct = 0
@@ -222,9 +222,9 @@ class Pipeline:
                 self.job_counter-=1
             self.large_jobs.remove(job_id)
             # TODO Meta data in return, i.e, wrong sent_id
-            return (True, '\n'.join(res))
+            return [True, res]
         else:
-            return (False, "Progress: %d percent"%(100*ct/len(job_ids)))
+            return [False, "Progress: %d percent"%(100*ct/len(job_ids))]
 
     def parse_batched(self,inp,):
         """inp: is a file-like object with input data
