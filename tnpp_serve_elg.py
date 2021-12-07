@@ -175,20 +175,31 @@ class TurkuNeuralParser(FlaskService):
     def process_text(self, request):
         params = request.params
         if params:
+            # Request with job_id
             if 'job_id' in params:
                 job_id = params['job_id']
+                # Get job status
                 report = self.tnpp.report_large_job(job_id)
-                assert len(report)!=1, 'Job not exists or already retreived the result.'
+                assert len(report) != 1, 'Job not exists or already retreived the result.'
                 is_done,res = report
+                # is_done then return the result
                 if is_done:
+                    # TODO Critical got a bug when I call this func
                     return self.conllu_to_annotation(res)
+                # else return the progress
                 else:
                     return AnnotationsResponse(features={'progress_report': res})
+        # large request return job_id
         if len(request.content) > max_char:
             job_id = self.tnpp.parse_large_txt(request.content)
+            assert job_id is not False, 'The service is busy or your request is too large, please request it later.'
             return AnnotationsResponse(features={'job_id': job_id})
+        # empty request return empty response
+        elif len(request.content) == 0:
+            return AnnotationsResponse(annotations={"tnpp/docs": [], "tnpp/paragraphs": [], "tnpp/sentences": [], "tnpp/tokens": [], "tnpp/conllu": []})
         else:
             output = self.tnpp.parse(request.content)
+            assert output is not False, 'The service is busy, please request it later.'
             return self.conllu_to_annotation(output)
 
 

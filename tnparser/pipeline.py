@@ -10,6 +10,7 @@ import yaml
 from signal import signal, SIGCHLD
 import sys
 
+
 def read_pipelines(fname):
     absdir=os.path.dirname(os.path.abspath(fname))
     with open(fname) as f:
@@ -97,7 +98,7 @@ class Pipeline:
     def send_final(self):
         self.q_in.put(("FINAL",""))
         
-    def put(self,txt,final=False):
+    def put(self,txt, final=False):
         """Start parsing a job, return id which can be used to retrieve the result"""
         batch_id=hashlib.md5((str(random.random())+txt).encode("utf-8")).hexdigest()
         self.q_in.put((batch_id,txt)) #first job of 1 total
@@ -124,7 +125,25 @@ class Pipeline:
                 self.done_jobs[finished_id]=finished
                 return None #whoever asked will have to ask again
 
+    def empty_q_out(self):
+        try:
+            while True:
+                # get all the nowait jobs and set as finished
+                finished_id, finished = self.q_out.get_nowait()
+                self.done_jobs[finished_id] = finished
+        except:
+            pass
+
     def parse(self,txt):
+        """
+        return res if queue is not full, else return False
+        """
+        # Make sure that the request will not be blocked for a long time
+        # Ongoing jobs + 1 should less than 5, or return False
+        if self.job_counter + 1 - len(self.done_jobs) > 5:
+            self.empty_q_out()
+            return False
+
         job_id=self.put(txt)
         while True:
             res=self.get(job_id)
@@ -162,12 +181,18 @@ class Pipeline:
         """
         The function divide the txt into small chunks and add chunks to the job queue
         large_txt: string object but a large one
-        return: Job id
+        return: Job id if queue not full, False if queue is full
         """
         chunks = self.chunk_plain_text(large_txt)
+
+        # Make sure that the request will not be blocked for a long time
+        # Ongoing jobs + potential jobs should less than 8, or return False
+        if len(chunks) + self.job_counter - len(self.done_jobs) > 8:
+            self.empty_q_out()
+            return False
+
         job_ids = []
         for chunk in chunks:
-            # TODO if too many jobs in the queue, this part will be blocked
             job_ids.append(self.put(chunk))
         large_job_id = '%'.join(job_ids)
         self.large_jobs.append(large_job_id)
@@ -179,13 +204,7 @@ class Pipeline:
         if done, return the result,
         if doesn't find the job_id, return False
         """
-        try:
-            while True:
-                # get all the nowait jobs and set as finished
-                finished_id,finished=self.q_out.get_nowait()
-                self.done_jobs[finished_id] = finished
-        except:
-            pass
+        self.empty_q_out()
         # Either wrong job_id or already retrieved the result
         if job_id not in self.large_jobs:
             return (False)
