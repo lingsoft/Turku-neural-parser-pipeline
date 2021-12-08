@@ -140,7 +140,7 @@ class Pipeline:
         """
         # Make sure that the request will not be blocked for a long time
         # Ongoing jobs + 1 should less than 5, or return False
-        if self.job_counter + 1 - len(self.done_jobs) > 5:
+        if self.job_counter - len(self.done_jobs) + 1 > 5:
             self.empty_q_out()
             return False
 
@@ -201,8 +201,9 @@ class Pipeline:
     def report_large_job(self, job_id):
         """
         Given a job_id, this function can return its progress,
-        if done, return the result,
-        if doesn't find the job_id, return False
+        if done, return the [True, result],
+        if not done, return the [False, progress]
+        if doesn't find the job_id, return [False]
         """
         self.empty_q_out()
         # Either wrong job_id or already retrieved the result
