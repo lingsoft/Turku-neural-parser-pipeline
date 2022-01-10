@@ -165,7 +165,16 @@ class Pipeline:
         for i in range(ck_num):
             # reverse the chunk and find the index of end of sentence/word
             tmp_str = txt[offsets[i][0]:(i + 1) * max_char][::-1]
-            eos_index = tmp_str.index('.') if '.' in tmp_str else tmp_str.index(' ')
+            
+            # Spliting
+            if '\n' in tmp_str:
+                eos_index = tmp_str.index('\n')
+            elif '.' in tmp_str:
+                eos_index = tmp_str.index('.')
+            else:
+                eos_index = tmp_str.index(' ')
+
+            # eos_index = tmp_str.index('.') if '.' in tmp_str else tmp_str.index(' ')
             offsets[i][1] = len(tmp_str) - eos_index + offsets[i][0]
             # the eos_index is the start index of the next
             offsets.append([offsets[i][1], offsets[i][1]])
