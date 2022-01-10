@@ -9,6 +9,7 @@ import os
 import yaml
 from signal import signal, SIGCHLD
 import sys
+import re
 
 
 def read_pipelines(fname):
@@ -162,11 +163,15 @@ class Pipeline:
         chunks = []
         # offsets of chunks
         offsets = [[0, 0]]
+
+        blank_line = re.compile('\n\s*\n')
         for i in range(ck_num):
             # reverse the chunk and find the index of end of sentence/word
             tmp_str = txt[offsets[i][0]:(i + 1) * max_char][::-1]
             
             # Spliting
+            if blank_line.search(tmp_str):
+                eos_index = blank_line.search(tmp_str).start()
             if '\n' in tmp_str:
                 eos_index = tmp_str.index('\n')
             elif '.' in tmp_str:
