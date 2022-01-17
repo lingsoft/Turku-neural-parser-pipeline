@@ -1,0 +1,39 @@
+# newdoc
+# newpar
+# sent_id = 1
+# text = Minulla on söpö koira.
+1	Minulla	minä	PRON	_	Case=Ade|Number=Sing|Person=1|PronType=Prs	0	root	_	_
+2	on	olla	AUX	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	1	cop:own	_	_
+3	söpö	söpö	ADJ	_	Case=Nom|Degree=Pos|Number=Sing	4	amod	_	_
+4	koira	koira	NOUN	_	Case=Nom|Number=Sing	1	nsubj:cop	_	SpaceAfter=No
+5	.	.	PUNCT	_	_	1	punct	_	_
+
+# sent_id = 2
+# text = Se haukkuu ja syö makkaraa, ja todellakin roi3:sta sekä poppedilliä ja tsillailee!
+1	Se	se	PRON	_	Case=Nom|Number=Sing|PronType=Dem	2	nsubj	_	_
+2	haukkuu	haukkua	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
+3	ja	ja	CCONJ	_	_	4	cc	_	_
+4	syö	syödä	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	2	conj	_	_
+5	makkaraa	makkara	NOUN	_	Case=Par|Number=Sing	2	obj	_	SpaceAfter=No
+6	,	,	PUNCT	_	_	9	punct	_	_
+7	ja	ja	CCONJ	_	_	9	cc	_	_
+8	todellakin	todella	ADV	_	Clitic=Kin	9	advmod	_	_
+9	roi3:sta	roiksi	NOUN	_	Case=Par|Number=Sing|Style=Coll	2	conj	_	_
+10	sekä	sekä	CCONJ	_	_	11	cc	_	_
+11	poppedilliä	poppedilli	NOUN	_	Case=Par|Number=Sing	9	conj	_	_
+12	ja	ja	CCONJ	_	_	13	cc	_	_
+13	tsillailee	tsillailla	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	9	conj	_	SpaceAfter=No
+14	!	!	PUNCT	_	_	2	punct	_	_
+
+# sent_id = 3
+# text = Ettei se vaan lähtisi karkaamaan.?
+1-2	Ettei	_	_	_	_	_	_	_	_
+1	Että	että	SCONJ	_	_	5	mark	_	_
+2	ei	ei	AUX	_	Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act	5	aux	_	_
+3	se	se	PRON	_	Case=Nom|Number=Sing|PronType=Dem	5	nsubj	_	_
+4	vaan	vaan	ADV	_	_	5	advmod	_	_
+5	lähtisi	lähteä	VERB	_	Connegative=Yes|Mood=Cnd|VerbForm=Fin	0	root	_	_
+6	karkaamaan	karata	VERB	_	Case=Ill|InfForm=3|Number=Sing|VerbForm=Inf|Voice=Act	5	xcomp	_	SpaceAfter=No
+7	.	.	PUNCT	_	_	5	punct	_	SpaceAfter=No
+8	?	?	PUNCT	_	_	5	punct	_	SpacesAfter=\n
+
