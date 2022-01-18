@@ -30,7 +30,7 @@ ENV TNPP_MODEL models_${MODEL}/pipelines.yaml
 ENV TNPP_PIPELINE ${PIPELINE}
 ENV TNPP_MAX_CHARS ${MAX_CHARS}
 
-RUN python fetch_models.py $MODEL
+RUN /elg/venv/bin/python fetch_models.py $MODEL
 
 # Copy ini the entrypoint script and everything else our app needs
 # COPY --chown=elg:elg models_fi_tdt_dia /elg/models_fi_tdt_dia/
