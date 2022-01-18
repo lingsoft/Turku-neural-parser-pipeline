@@ -2,8 +2,7 @@ import json
 import re
 
 
-class ConlluToJson():
-
+class ConlluToJson:
 
     def _conllu_parse_word(self, cols):
         result = {"form": cols[1]}
