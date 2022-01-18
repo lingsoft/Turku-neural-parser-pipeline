@@ -10,6 +10,6 @@ configargparse
 transformers
 OpenNMT-py>=1.2.0
 git+https://github.com/TurkuNLP/diaparser.git@master
-pytorch_lightning==1.4.0
-torchmetrics
+pytorch_lightning==1.4.9
+torchmetrics==0.6.2
 scikit-learn>=0.24
