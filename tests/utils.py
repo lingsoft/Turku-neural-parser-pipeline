@@ -35,6 +35,7 @@ class ConlluToJson():
             """
             sent_cnt = 0
             doc_cnt = 0
+            par_cnt = 0
             annots = {"tnpp/docs": [], "tnpp/paragraphs": [], "tnpp/sentences": [], "tnpp/tokens": [], "tnpp/conllu": []}
 
             first_doc, first_par, first_sent, last_token, in_mwt = None, None, None, None, 0
@@ -58,8 +59,8 @@ class ConlluToJson():
                 if line.startswith("#"):
                     # Check end of document
                     if "newdoc" in line:
-                        doc_cnt += 1
-                        if first_doc is not None:
+                        if first_doc is not None and last_token is not None:
+                            doc_cnt += 1
                             annots["tnpp/docs"].append({"start": first_doc, "end": last_token, "features": {"doc_id": doc_cnt}})
                         first_doc = None
                         continue
@@ -67,8 +68,9 @@ class ConlluToJson():
                     # Check end of paragraph
                     if "newpar" in line:
                         if first_par is not None and last_token is not None:
+                            par_cnt += 1
                             annots["tnpp/paragraphs"].append(
-                                {"start": first_par, "end": last_token, "features": {}})
+                                {"start": first_par, "end": last_token, "features": {"par_id": par_cnt}})
                         first_par = None
                         continue
 
@@ -84,7 +86,7 @@ class ConlluToJson():
                     # Check end of sentence
                     if first_sent is not None and last_token is not None:
                         annots["tnpp/sentences"].append(
-                            {"start": first_sent, "end": last_token, "features": {}})
+                            {"start": first_sent, "end": last_token, "features": {"sent_id": sent_cnt}})
                     first_sent = None
                     offset += 1
                     continue
@@ -136,15 +138,18 @@ class ConlluToJson():
                     in_mwt = tokens
 
             if first_par is not None and last_token is not None:
+                par_cnt += 1
                 annots["tnpp/paragraphs"].append(
-                    {"start": first_par, "end": last_token, "features": {}})
+                    {"start": first_par, "end": last_token, "features": {"par_id": par_cnt}})
 
             if first_sent is not None and last_token is not None:
+                sent_cnt += 1
                 annots["tnpp/sentences"].append(
-                    {"start": first_sent, "end": last_token, "features": {}})
+                    {"start": first_sent, "end": last_token, "features": {"sent_id": sent_cnt}})
 
             if first_doc is not None and last_token is not None:
-                annots["tnpp/docs"].append({"start": 0, "end": last_token, "features": {"doc_id": doc_cnt}})
+                doc_cnt += 1
+                annots["tnpp/docs"].append({"start": first_doc, "end": last_token, "features": {"doc_id": doc_cnt}})
 
             annots["tnpp/conllu"].append({"start": 0, "end": last_token, "features": {"conllu_format": conllu}})
 
