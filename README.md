@@ -25,113 +25,113 @@ curl -d '{"type":"text", "content": "Minä rakastan sinua!"}' -H "Content-Type: 
 Response should be:
 There is orignal CONLLU format included under tnpp/conllu keys of annotations object.
 ```json
-{{
-   "response":{
-      "type":"annotations",
-      "annotations":{
-         "tnpp/docs":[
-            {
-               "start":0,
-               "end":99999999,
-               "features":{
-                  "doc_id":1
-               }
-            }
-         ],
-         "tnpp/paragraphs":[
-            {
-               "start":0,
-               "end":20,
-               "features":{
-                  
-               }
-            }
-         ],
-         "tnpp/sentences":[
-            {
-               "start":0,
-               "end":20,
-               "features":{
-                  
-               }
-            }
-         ],
-         "tnpp/tokens":[
-            {
-               "start":0,
-               "end":4,
-               "features":{
-                  "words":[
-                     {
-                        "form":"Min\u00e4",
-                        "lemma":"min\u00e4",
-                        "upos":"PRON",
-                        "feats":"Case=Nom|Number=Sing|Person=1|PronType=Prs",
-                        "head":2,
-                        "deprel":"nsubj"
-                     }
-                  ]
-               }
-            },
-            {
-               "start":5,
-               "end":13,
-               "features":{
-                  "words":[
-                     {
-                        "form":"rakastan",
-                        "lemma":"rakastaa",
-                        "upos":"VERB",
-                        "feats":"Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act",
-                        "head":0,
-                        "deprel":"root"
-                     }
-                  ]
-               }
-            },
-            {
-               "start":14,
-               "end":19,
-               "features":{
-                  "words":[
-                     {
-                        "form":"sinua",
-                        "lemma":"sin\u00e4",
-                        "upos":"PRON",
-                        "feats":"Case=Par|Number=Sing|Person=2|PronType=Prs",
-                        "head":2,
-                        "deprel":"obj"
-                     }
-                  ]
-               }
-            },
-            {
-               "start":19,
-               "end":20,
-               "features":{
-                  "words":[
-                     {
-                        "form":"!",
-                        "lemma":"!",
-                        "upos":"PUNCT",
-                        "head":2,
-                        "deprel":"punct"
-                     }
-                  ]
-               }
-            }
-         ],
-         "tnpp/conllu":[
-            {
-               "start":0,
-               "end":99999999,
-               "features":{
-                  "conllu_format":"# newdoc\n# newpar\n# sent_id = 1\n# text = Min\u00e4 rakastan sinua!\n1\tMin\u00e4\tmin\u00e4\tPRON\t_\tCase=Nom|Number=Sing|Person=1|PronType=Prs\t2\tnsubj\t_\t_\n2\trakastan\trakastaa\tVERB\t_\tMood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act\t0\troot\t_\t_\n3\tsinua\tsin\u00e4\tPRON\t_\tCase=Par|Number=Sing|Person=2|PronType=Prs\t2\tobj\t_\tSpaceAfter=No\n4\t!\t!\tPUNCT\t_\t_\t2\tpunct\t_\tSpacesAfter=\\n\n\n"
-               }
-            }
-         ]
-      }
-   }
+{
+  "response": {
+    "type": "annotations",
+    "annotations": {
+      "tnpp/docs": [
+        {
+          "start": 0,
+          "end": 20,
+          "features": {
+            "doc_id": 1
+          }
+        }
+      ],
+      "tnpp/paragraphs": [
+        {
+          "start": 0,
+          "end": 20,
+          "features": {
+            "par_id": 1
+          }
+        }
+      ],
+      "tnpp/sentences": [
+        {
+          "start": 0,
+          "end": 20,
+          "features": {
+            "sent_id": 1
+          }
+        }
+      ],
+      "tnpp/tokens": [
+        {
+          "start": 0,
+          "end": 4,
+          "features": {
+            "words": [
+              {
+                "form": "Minä",
+                "lemma": "minä",
+                "upos": "PRON",
+                "feats": "Case=Nom|Number=Sing|Person=1|PronType=Prs",
+                "head": 2,
+                "deprel": "nsubj"
+              }
+            ]
+          }
+        },
+        {
+          "start": 5,
+          "end": 13,
+          "features": {
+            "words": [
+              {
+                "form": "rakastan",
+                "lemma": "rakastaa",
+                "upos": "VERB",
+                "feats": "Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act",
+                "head": 0,
+                "deprel": "root"
+              }
+            ]
+          }
+        },
+        {
+          "start": 14,
+          "end": 19,
+          "features": {
+            "words": [
+              {
+                "form": "sinua",
+                "lemma": "sinä",
+                "upos": "PRON",
+                "feats": "Case=Par|Number=Sing|Person=2|PronType=Prs",
+                "head": 2,
+                "deprel": "obj"
+              }
+            ]
+          }
+        },
+        {
+          "start": 19,
+          "end": 20,
+          "features": {
+            "words": [
+              {
+                "form": "!",
+                "lemma": "!",
+                "upos": "PUNCT",
+                "head": 2,
+                "deprel": "punct"
+              }
+            ]
+          }
+        }
+      ],
+      "tnpp/conllu": [
+        {
+          "start": 0,
+          "end": 20,
+          "features": {
+            "conllu_format": "# newdoc\n# newpar\n# sent_id = 1\n# text = Minä rakastan sinua!\n1\tMinä\tminä\tPRON\t_\tCase=Nom|Number=Sing|Person=1|PronType=Prs\t2\tnsubj\t_\t_\n2\trakastan\trakastaa\tVERB\t_\tMood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act\t0\troot\t_\t_\n3\tsinua\tsinä\tPRON\t_\tCase=Par|Number=Sing|Person=2|PronType=Prs\t2\tobj\t_\tSpaceAfter=No\n4\t!\t!\tPUNCT\t_\t_\t2\tpunct\t_\tSpacesAfter=\\n\n\n"
+          }
+        }
+      ]
+    }
+  }
 }
 ````
 
