@@ -29,7 +29,6 @@ def load_doc_conllu(conllu_file='single.doc.conllu'):
             if all_lines[i-1].strip() != '':
                 num_tok += int(all_lines[i-1].split('\t')[0]) # to get the last count of last token
     output = ConlluToJson().conllu_to_annotation(input)
-    print(json.dumps(output, indent=2, ensure_ascii=False))
     return  num_doc, num_par, num_sent, num_tok, output
 # print(json.dumps(output, indent=2, ensure_ascii=False))
 
@@ -95,15 +94,66 @@ class TestConlluToJsonInSingleDocumentParse(unittest.TestCase):
 class TestConlluToJsonInDoubleDocumentParse(unittest.TestCase):
 
     num_doc, num_par, num_sent, num_tok, output = load_doc_conllu('double.doc.conllu')
+    # print(json.dumps(output, indent=2, ensure_ascii=False))
+    doc_lst = output['tnpp/docs']
     par_lst = output['tnpp/paragraphs']
     sent_lst = output['tnpp/sentences']
     tok_lst = output['tnpp/tokens']
     tok_size_lst = [len(tok_obj['features']['words']) for tok_obj in tok_lst] #  has to do this because of multi-word case, ettei -> että ei
 
+    # fake text as it is from another document so the offset would continue from the first text
+    double_text = text + ' ' + text
+
+    def test_num_doc(self):
+        """Should return identical number of doc as in the original CONLL-U format
+        """
+        self.assertEqual(len(self.doc_lst), self.num_doc)
+
     def test_num_paragraph(self):
         """Should return identical number of paragraph as in the original CONLL-U format
         """
         self.assertEqual(len(self.par_lst), self.num_par)
+
+    def test_num_sentence(self):
+        """Should return identical number of sentence as in the original CONLL-U format
+        """
+        self.assertEqual(len(self.sent_lst), self.num_sent)
+
+    def test_num_token(self):
+        """Should return identical number of tokens as in the original CONLL-U format
+        """
+        self.assertEqual(sum(self.tok_size_lst), self.num_tok)
+
+    def test_offset_of_first_paragraph(self):
+        """
+        Should return correct start and end offset of the first paragraph as start and end index of first text
+        """
+        first_par = self.par_lst[0]
+        self.assertEqual(first_par['start'], 0)
+        self.assertEqual(first_par['end'], len(text))
+
+    def test_offset_of_second_paragraph(self):
+        """
+        Should return correct start and end offset of the second paragraph as start and end index of double text
+        """
+        second_par = self.par_lst[1]
+        self.assertEqual(second_par['start'], len(text) + 1)
+        self.assertEqual(second_par['end'], len(self.double_text))
+
+    def test_first_token_offsets(self):
+        """
+        First token should have start index as 0 and end index by length of the first word in text
+        """
+        first_tok = self.tok_lst[0]
+        self.assertEqual(int(first_tok['start']), 0)
+        self.assertEqual(int(first_tok['end']), len(self.double_text.split(' ')[0]))
+
+    def test_last_token_end_offset(self):
+        """
+        Last token should have end index by the length of double text
+        """
+        last_tok = self.tok_lst[-1]
+        self.assertEqual(int(last_tok['end']), len(self.double_text))
 
 if __name__ == '__main__':
     unittest.main()
