@@ -1,0 +1,293 @@
+{
+  "udpipe/tokens": [
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "PRON",
+            "deprel": "nsubj",
+            "lemma": "se",
+            "misc": "TokenRange=0:2",
+            "head": 2,
+            "feats": "Case=Nom|Number=Sing|PronType=Dem",
+            "form": "Se",
+            "id": "1"
+          }
+        ]
+      },
+      "end": 2,
+      "start": 0
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "VERB",
+            "deprel": "root",
+            "lemma": "n\u00e4ytt\u00e4\u00e4",
+            "misc": "SpaceAfter=No|TokenRange=3:9",
+            "head": 0,
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act",
+            "form": "n\u00e4ytti",
+            "id": "2"
+          }
+        ]
+      },
+      "end": 9,
+      "start": 3
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "PUNCT",
+            "deprel": "punct",
+            "lemma": ",",
+            "misc": "TokenRange=9:10",
+            "head": 9,
+            "form": ",",
+            "id": "3"
+          }
+        ]
+      },
+      "end": 10,
+      "start": 9
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "SCONJ",
+            "deprel": "mark",
+            "lemma": "ett\u00e4",
+            "head": 9,
+            "form": "ett\u00e4",
+            "id": "4"
+          },
+          {
+            "upos": "AUX",
+            "deprel": "aux",
+            "lemma": "ei",
+            "head": 9,
+            "feats": "Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act",
+            "form": "ei",
+            "id": "5"
+          }
+        ]
+      },
+      "end": 16,
+      "start": 11
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "ADJ",
+            "deprel": "amod",
+            "lemma": "v\u00e4ki#vahvaka",
+            "misc": "TokenRange=17:30",
+            "head": 7,
+            "feats": "Case=Nom|Clitic=Kin|Degree=Pos|Number=Sing",
+            "form": "v\u00e4kivahvakaan",
+            "id": "6"
+          }
+        ]
+      },
+      "end": 30,
+      "start": 17
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "NOUN",
+            "deprel": "nsubj",
+            "lemma": "tulos",
+            "misc": "TokenRange=31:36",
+            "head": 9,
+            "feats": "Case=Nom|Number=Sing",
+            "form": "tulos",
+            "id": "7"
+          }
+        ]
+      },
+      "end": 36,
+      "start": 31
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "ADV",
+            "deprel": "advmod",
+            "lemma": "aina",
+            "misc": "TokenRange=37:41",
+            "head": 9,
+            "form": "aina",
+            "id": "8"
+          }
+        ]
+      },
+      "end": 41,
+      "start": 37
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "VERB",
+            "deprel": "ccomp",
+            "lemma": "riitt\u00e4\u00e4",
+            "misc": "SpaceAfter=No|TokenRange=42:47",
+            "head": 2,
+            "feats": "Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin",
+            "form": "riit\u00e4",
+            "id": "9"
+          }
+        ]
+      },
+      "end": 47,
+      "start": 42
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "PUNCT",
+            "deprel": "punct",
+            "lemma": ".",
+            "misc": "TokenRange=47:48",
+            "head": 2,
+            "form": ".",
+            "id": "10"
+          }
+        ]
+      },
+      "end": 48,
+      "start": 47
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "NOUN",
+            "deprel": "nsubj",
+            "lemma": "ter\u00e4s#valmistaja",
+            "misc": "TokenRange=49:64",
+            "head": 2,
+            "feats": "Case=Nom|Derivation=Ja|Number=Sing",
+            "form": "Ter\u00e4svalmistaja",
+            "id": "1"
+          }
+        ]
+      },
+      "end": 64,
+      "start": 49
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "VERB",
+            "deprel": "root",
+            "lemma": "tehd\u00e4",
+            "misc": "TokenRange=65:69",
+            "head": 0,
+            "feats": "Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act",
+            "form": "teki",
+            "id": "2"
+          }
+        ]
+      },
+      "end": 69,
+      "start": 65
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "ADJ",
+            "deprel": "amod",
+            "lemma": "hirmuinen",
+            "misc": "TokenRange=70:79",
+            "head": 4,
+            "feats": "Case=Gen|Degree=Pos|Derivation=Inen|Number=Sing",
+            "form": "hirmuisen",
+            "id": "3"
+          }
+        ]
+      },
+      "end": 79,
+      "start": 70
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "NOUN",
+            "deprel": "obj",
+            "lemma": "tili",
+            "misc": "SpaceAfter=No|TokenRange=80:85",
+            "head": 2,
+            "feats": "Case=Gen|Number=Sing",
+            "form": "tilin",
+            "id": "4"
+          }
+        ]
+      },
+      "end": 85,
+      "start": 80
+    },
+    {
+      "features": {
+        "words": [
+          {
+            "upos": "PUNCT",
+            "deprel": "punct",
+            "lemma": ".",
+            "misc": "SpacesAfter=\\n|TokenRange=85:86",
+            "head": 2,
+            "form": ".",
+            "id": "5"
+          }
+        ]
+      },
+      "end": 86,
+      "start": 85
+    }
+  ],
+  "udpipe/docs": [
+    {
+      "features": {
+        "doc_id": 1
+      },
+      "end": 86,
+      "start": 0
+    }
+  ],
+  "udpipe/sentences": [
+    {
+      "features": {
+        "sent_id": 1
+      },
+      "end": 48,
+      "start": 0
+    },
+    {
+      "features": {
+        "sent_id": 2
+      },
+      "end": 86,
+      "start": 49
+    }
+  ],
+  "udpipe/paragraphs": [
+    {
+      "features": {
+        "par_id": 1
+      },
+      "end": 86,
+      "start": 0
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+# newdoc
+# newpar
+# sent_id = 1
+# text = Se näytti, ettei väkivahvakaan tulos aina riitä.
+1	Se	se	PRON	_	Case=Nom|Number=Sing|PronType=Dem	2	nsubj	_	TokenRange=0:2
+2	näytti	näyttää	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No|TokenRange=3:9
+3	,	,	PUNCT	_	_	9	punct	_	TokenRange=9:10
+4-5	ettei	_	_	_	_	_	_	_	TokenRange=11:16
+4	että	että	SCONJ	_	_	9	mark	_	_
+5	ei	ei	AUX	_	Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act	9	aux	_	_
+6	väkivahvakaan	väki#vahvaka	ADJ	_	Case=Nom|Clitic=Kin|Degree=Pos|Number=Sing	7	amod	_	TokenRange=17:30
+7	tulos	tulos	NOUN	_	Case=Nom|Number=Sing	9	nsubj	_	TokenRange=31:36
+8	aina	aina	ADV	_	_	9	advmod	_	TokenRange=37:41
+9	riitä	riittää	VERB	_	Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin	2	ccomp	_	SpaceAfter=No|TokenRange=42:47
+10	.	.	PUNCT	_	_	2	punct	_	TokenRange=47:48
+
+# sent_id = 2
+# text = Teräsvalmistaja teki hirmuisen tilin.
+1	Teräsvalmistaja	teräs#valmistaja	NOUN	_	Case=Nom|Derivation=Ja|Number=Sing	2	nsubj	_	TokenRange=49:64
+2	teki	tehdä	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	TokenRange=65:69
+3	hirmuisen	hirmuinen	ADJ	_	Case=Gen|Degree=Pos|Derivation=Inen|Number=Sing	4	amod	_	TokenRange=70:79
+4	tilin	tili	NOUN	_	Case=Gen|Number=Sing	2	obj	_	SpaceAfter=No|TokenRange=80:85
+5	.	.	PUNCT	_	_	2	punct	_	SpacesAfter=\n|TokenRange=85:86
+
+# newdoc
+# newpar
+# sent_id = 1
+# text = Se näytti, ettei väkivahvakaan tulos aina riitä.
+1	Se	se	PRON	_	Case=Nom|Number=Sing|PronType=Dem	2	nsubj	_	TokenRange=0:2
+2	näytti	näyttää	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No|TokenRange=3:9
+3	,	,	PUNCT	_	_	9	punct	_	TokenRange=9:10
+4-5	ettei	_	_	_	_	_	_	_	TokenRange=11:16
+4	että	että	SCONJ	_	_	9	mark	_	_
+5	ei	ei	AUX	_	Number=Sing|Person=3|Polarity=Neg|VerbForm=Fin|Voice=Act	9	aux	_	_
+6	väkivahvakaan	väki#vahvaka	ADJ	_	Case=Nom|Clitic=Kin|Degree=Pos|Number=Sing	7	amod	_	TokenRange=17:30
+7	tulos	tulos	NOUN	_	Case=Nom|Number=Sing	9	nsubj	_	TokenRange=31:36
+8	aina	aina	ADV	_	_	9	advmod	_	TokenRange=37:41
+9	riitä	riittää	VERB	_	Connegative=Yes|Mood=Ind|Tense=Pres|VerbForm=Fin	2	ccomp	_	SpaceAfter=No|TokenRange=42:47
+10	.	.	PUNCT	_	_	2	punct	_	TokenRange=47:48
+
+# sent_id = 2
+# text = Teräsvalmistaja teki hirmuisen tilin.
+1	Teräsvalmistaja	teräs#valmistaja	NOUN	_	Case=Nom|Derivation=Ja|Number=Sing	2	nsubj	_	TokenRange=49:64
+2	teki	tehdä	VERB	_	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	TokenRange=65:69
+3	hirmuisen	hirmuinen	ADJ	_	Case=Gen|Degree=Pos|Derivation=Inen|Number=Sing	4	amod	_	TokenRange=70:79
+4	tilin	tili	NOUN	_	Case=Gen|Number=Sing	2	obj	_	SpaceAfter=No|TokenRange=80:85
+5	.	.	PUNCT	_	_	2	punct	_	SpacesAfter=\n|TokenRange=85:86
