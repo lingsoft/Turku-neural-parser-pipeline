@@ -319,3 +319,14 @@ curl -d '{"type":"text","content":"Se näytti, ettei väkivahvakaan tulos aina r
   - list of objects that contains common supported fields of CONLLU.
 - `conllu_format` (str)
   - string contains CoNLL-U results from the pipeline. 
+
+### Local ELG GUI
+
+Use ELG-compatible service from GUI locally
+
+```
+cd elg_local && docker-compose up
+```
+
+The GUI is accessible on `http://localhost:5080`. See more
+[instructions](https://european-language-grid.readthedocs.io/en/stable/all/A1_PythonSDK/DeployServicesLocally.html#deploy-elg-compatible-service-from-its-docker-image).
