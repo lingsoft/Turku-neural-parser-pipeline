@@ -4,7 +4,7 @@ import hashlib
 import io
 import http.server
 import urllib
-import dummy_handler
+# import dummy_handler
 import argparse
 import re
 
