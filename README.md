@@ -40,7 +40,7 @@ python3 -m unittest tests/test.py  -v
 ## Building the docker image
 
 ```
-docker build -t turkuNLP-tnpp-fi .
+docker build -t turku-neural-parser .
 ```
 
 Or pull directly ready-made image `docker pull lingsoft/turku-neural-parser:tagname`.
@@ -48,7 +48,7 @@ Or pull directly ready-made image `docker pull lingsoft/turku-neural-parser:tagn
 ## Deploying the service
 
 ```
-docker run -d -p <port>:8000 --init --memory="4g" --restart always  turkuNLP-tnpp-fi
+docker run -d -p <port>:8000 --init turku-neural-parser
 ```
 
 ## REST API
@@ -61,7 +61,7 @@ docker run -d -p <port>:8000 --init --memory="4g" --restart always  turkuNLP-tnp
 http://<host>:<port>/process
 ```
 
-Replace `<host>` and `<port>` with the host name and port where the 
+Replace `<host>` and `<port>` with the host name and port where the
 service is running.
 
 #### HEADERS
@@ -94,7 +94,6 @@ curl -d '{"type":"text","content":"Se näytti, ettei väkivahvakaan tulos aina r
 ```
 
 ### Response should be
-
 
 ```
 {
