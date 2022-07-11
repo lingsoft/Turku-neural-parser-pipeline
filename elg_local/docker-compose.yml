@@ -1,0 +1,33 @@
+version: "2.0"
+
+services:
+  
+  turku-neural-parser:
+    image: "lingsoft/turku-neural-parser:2.8.0-elg"
+    environment: []
+    restart: always
+
+  restserver:
+    image: registry.gitlab.com/european-language-grid/ilsp/elg-lt-service-execution-all:production-reactive
+    command:
+    - "--spring.webflux.base-path=/execution"
+    - "--logging.level.elg.ltserviceexecution.api=WARN"
+    - "--elg.ltservices.staticServices.turku-neural-parser=http://turku-neural-parser:8000/process"
+    - "--elg.base.url=http://localhost:5080/execution"
+    restart: always
+
+  try_gitlab_com_european_language_grid_cuni_gui_udpipe_latest:
+    image: "registry.gitlab.com/european-language-grid/cuni/gui-udpipe:latest"
+    restart: always
+
+  i18n:
+    image: registry.gitlab.com/european-language-grid/platform/i18n-service:latest
+    restart: always
+
+  frontend:
+    image: "nginx:alpine"
+    ports:
+    - "5080:80"
+    volumes:
+    - ./nginx-conf:/etc/nginx/templates
+    restart: always

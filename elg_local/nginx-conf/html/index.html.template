@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ELG Local Installation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans Display', sans-serif;
+        background-color: #f8f4ed;
+        display: flex;
+        flex-direction: column;
+      }
+      body > * {
+        margin-inline: auto;
+      }
+      h1,h2 {
+        font-weight: 600;
+        width: 900px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 32px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+      iframe {
+        margin-bottom: 32px;
+        background-color: white;
+      }
+    </style>
+    
+</head>
+<body>
+<h1>European Language Grid<br/>Local Installation</h1>
+<h2>[-1] ELG Service from Docker turku-neural-parser</h2>
+<iframe width="900" height="500" id="turku-neural-parser" src="about:blank"></iframe>
+
+<script>
+(function() {
+  var iframe = document.getElementById('turku-neural-parser');
+  window.addEventListener('message', function (e) {
+    if(iframe && iframe.contentWindow && e.source === iframe.contentWindow) {
+      // this is a configuration request from turku-neural-parser
+      iframe.contentWindow.postMessage(JSON.stringify({
+        "StyleCss":" ",
+        "ServiceUrl":window.location.origin+"/execution/async/process/turku-neural-parser",
+        "ApiRecordUrl":window.location.origin+"/turku-neural-parser.json"
+      }), window.location.origin);
+    }
+  }, false);
+
+  iframe.src = '/try_gitlab_com_european_language_grid_cuni_gui_udpipe_latest/';
+})();
+
+</script>
+</body>
+</html>
