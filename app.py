@@ -55,7 +55,13 @@ class TurkuNeuralParser(FlaskService, ConlluToJson):
                 detail={'text': 'lower limit is 5 characters in length'})
             return Failure(errors=[error])
         else:
-            output = tnpp.parse(content)
+            try:
+                output = tnpp.parse(content)
+            except Exception:
+                error = StandardMessages.\
+                    generate_elg_service_internalerror(
+                            params=['Pipeline failed'])
+                return Failure(errors=[error])
             if output is False:
                 error = StandardMessages.\
                         generate_elg_service_internalerror(params=[
