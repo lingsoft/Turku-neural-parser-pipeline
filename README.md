@@ -76,87 +76,16 @@ Content-type : application/json
 {
   "type":"text",
   "content": "text to be parsed",
-  "params": {"includeConllu": false}
-}
-```
-
-The API supports text content with the maximum of 15000-character length. In addtion, there is a boolean parameter `includeConllu` which can control the API in outputting the original ConLL-U format from the parser. The parameter has a default value of `false`
- 
-
-#### RESPONSE
-
-```json
-{
-  "response":{
-    "type":"annotations",
-    "annotations":{
-        "udpipe/docs": [
-          {
-            "start": number,
-            "end": number,
-            "features": {
-              "doc_id": number
-            }
-          }
-        ],
-        "udpipe/paragraphs": [
-          {
-            "start": number,
-            "end": number,
-            "features": {
-              "par_id": number
-            }
-          }
-        ],
-        "udpipe/sentences": [
-          {
-            "start": number,
-            "end": number,
-            "features": {
-              "sent_id": number
-            }
-          }
-        ],
-        "udpipe/<tokens>":[
-          {
-            "start":number,
-            "end":number,
-            "features": { "words": [
-                {
-                "form": str,
-                "lemma": str,
-                "upos": str,
-                "feats": str,
-                "head": number,
-                "deprel": str
-                }
-            ] }
-          },
-        ],
-        "udpipe/conllu": [
-          {
-            "start": number,
-            "end": number,
-            "features": {
-              "conllu_format": str
-            }
-          }
-        ]
-    }
+  "params": {
+    "includeConllu": true
   }
 }
 ```
 
-### Response structure
-
-- `start` and `end` (int)
-  - the indices of the token from the text in the send request.
-- `doc_id`, `par_id`, `sent_id` (int)
-  - the indices of the document, paragraph, and sentence.
-- `words` (list)
-  - list of objects that contains common supported fields of CONLLU.
-- `conllu_format` (str)
-  - string contains CoNLL-U results from the pipeline. 
+The API supports text content with the maximum of 15000-character length. 
+In addtion, there is a boolean parameter `includeConllu` which can control 
+the API in outputting the original ConLL-U format from the parser. 
+The parameter has a default value of `false`
 
 ### Example call
 
@@ -380,3 +309,14 @@ curl -d '{"type":"text","content":"Se näytti, ettei väkivahvakaan tulos aina r
   }
 }
 ```
+
+### Response structure
+
+- `start` and `end` (int)
+  - the indices of the token from the text in the send request.
+- `doc_id`, `par_id`, `sent_id` (int)
+  - the indices of the document, paragraph, and sentence.
+- `words` (list)
+  - list of objects that contains common supported fields of CONLLU.
+- `conllu_format` (str)
+  - string contains CoNLL-U results from the pipeline. 
