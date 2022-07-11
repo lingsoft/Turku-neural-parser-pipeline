@@ -95,7 +95,7 @@ curl -d '{"type":"text","content":"Se näytti, ettei väkivahvakaan tulos aina r
 
 ### Response should be
 
-```
+```json
 {
   "response": {
     "type": "annotations",
