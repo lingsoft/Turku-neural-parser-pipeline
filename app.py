@@ -22,9 +22,10 @@ tnpp = Pipeline(available_pipelines[pipeline])
 
 
 class TurkuNeuralParser(FlaskService, ConlluToJson):
+
     def conllu_to_annotation(self, conllu, includeConllu):
-        annots = super().conllu_to_annotation(conllu, includeConllu)
         try:
+            annots = super().conllu_to_annotation(conllu, includeConllu)
             return AnnotationsResponse(annotations=annots)
         except Exception:
             internalErrorMessage = StandardMessages.\
