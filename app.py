@@ -28,9 +28,10 @@ class TurkuNeuralParser(FlaskService, ConlluToJson):
             annots = super().conllu_to_annotation(conllu, includeConllu)
             return AnnotationsResponse(annotations=annots)
         except Exception:
-            internalErrorMessage = StandardMessages.\
-                generate_elg_service_internalerror(params=['Parsing CONLLU failed'])
-            return Failure(errors=[internalErrorMessage])
+            error = StandardMessages.\
+                generate_elg_service_internalerror(
+                        params=['Parsing CONLLU failed'])
+            return Failure(errors=[error])
 
     def process_text(self, request: TextRequest):
         content = request.content
@@ -46,23 +47,23 @@ class TurkuNeuralParser(FlaskService, ConlluToJson):
                             detail={'params': invalid_param_msg})
                 return Failure(errors=[error])
 
-        if len(content.strip()) > MAX_CHAR:
-            tooLargeMessage = StandardMessages.generate_elg_request_too_large()
-            return Failure(errors=[tooLargeMessage])
+        if len(content) > MAX_CHAR:
+            error = StandardMessages.generate_elg_request_too_large()
+            return Failure(errors=[error])
         elif len(content.strip()) < 5:
-            tooShortMessage = StandardMessages.generate_elg_request_invalid(
+            error = StandardMessages.generate_elg_request_invalid(
                 detail={'text': 'lower limit is 5 characters in length'})
-            return Failure(errors=[tooShortMessage])
+            return Failure(errors=[error])
         else:
             output = tnpp.parse(content)
             if output is False:
-                internalErrorMessage = StandardMessages.\
+                error = StandardMessages.\
                         generate_elg_service_internalerror(params=[
                             'The service is busy, please request it later.'
                         ])
-                return Failure(errors=[internalErrorMessage])
-            return self.conllu_to_annotation(conllu=output,
-                                             includeConllu=includeConllu)
+                return Failure(errors=[error])
+            return self.conllu_to_annotation(
+                    conllu=output, includeConllu=includeConllu)
 
 
 tnpp_service = TurkuNeuralParser("turku-neural-parser")
