@@ -34,8 +34,8 @@ def load_doc_conllu(conllu_file='single.doc.conllu'):
                 num_tok += int(all_lines[i - 1].split('\t')
                                [0])  # to get the last count of last token
     output = ConlluToJson().conllu_to_annotation(input)
-    with open('tests/elg.json', 'w') as f:
-        json.dump(output, f, indent=2, ensure_ascii=True)
+    # with open('tests/elg.json', 'w') as f:
+    #     json.dump(output, f, indent=2, ensure_ascii=True)
 
     return num_doc, num_par, num_sent, num_tok, output
 
