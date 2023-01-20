@@ -83,9 +83,9 @@ Content-type : application/json
 ```
 
 The API supports text content with the maximum of 15000-character length. 
-In addtion, there is a boolean parameter `includeConllu` which can control 
+In addition, there is a boolean parameter `includeConllu` which can control 
 the API in outputting the original ConLL-U format from the parser. 
-The parameter has a default value of `false`
+The parameter has a default value of `false`.
 
 ### Example call
 
